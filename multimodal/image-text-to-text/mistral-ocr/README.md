@@ -1,30 +1,68 @@
 # Mistral OCR
 
-Document OCR and structured data extraction using Mistral's vision-language capabilities.
+An experiment with the Mistral Document AI OCR API for extracting text and structured content from PDF documents.
 
-## Notebooks
+## Overview
 
-| Notebook | Description |
-|----------|-------------|
-| [mistral_ocr.ipynb](./mistral_ocr.ipynb) | Basic OCR usage with Mistral |
-| [cookbook/structured_ocr.ipynb](./cookbook/structured_ocr.ipynb) | Extract structured data from documents |
-| [cookbook/data_extraction.ipynb](./cookbook/data_extraction.ipynb) | Advanced data extraction patterns |
+This project demonstrates how to use Mistral's `mistral-ocr-latest` model to:
+
+- Upload PDF files to Mistral Cloud
+- Extract text via OCR processing
+- Retrieve structured content including tables (HTML format)
+- Extract headers and footers
+- Get embedded images as base64
 
 ## Setup
 
-1. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
+### Prerequisites
 
-2. Configure API key in `.env`:
-   ```
-   MISTRAL_API_KEY=your_key_here
-   ```
+- Python 3.11+
+- Mistral API key
 
-## Use Cases
+### Installation
 
-- Invoice processing
-- Form digitization
-- Table extraction
-- Document understanding
+```bash
+# Install with notebook support
+uv sync --extra notebook
+
+# Then register the kernel
+uv run python -m ipykernel install --user --name=.venv
+```
+
+Open `cookbook.ipynb` in VS Code.
+
+## Basic Usage
+
+```python
+from mistralai import Mistral
+from pathlib import Path
+
+client = Mistral(api_key="your_api_key")
+
+# Upload PDF
+path = Path("data/your_document.pdf")
+uploaded_pdf = client.files.upload(
+    file={"file_name": path.name, "content": open(path, "rb")},
+    purpose="ocr"
+)
+
+# Get signed URL
+signed_url = client.files.get_signed_url(file_id=uploaded_pdf.id)
+
+# Process OCR
+ocr_response = client.ocr.process(
+    model="mistral-ocr-latest",
+    document={"type": "document_url", "document_url": signed_url.url},
+    table_format="html",
+    extract_header=True,
+    extract_footer=True,
+    include_image_base64=True
+)
+
+# Clean up
+client.files.delete(file_id=uploaded_pdf.id)
+```
+
+## Resources
+
+Check official Mistral AI [documentation](https://docs.mistral.ai/capabilities/document_ai/basic_ocr#ocr-images-and-pdfs) for more information.

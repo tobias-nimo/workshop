@@ -1,4 +1,0 @@
-jupyterlab
-mistralai
-dotenv
-groq

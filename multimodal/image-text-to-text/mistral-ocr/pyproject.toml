@@ -1,0 +1,22 @@
+[project]
+name = "mistral-ocr"
+version = "0.1.0"
+description = "Experiment with Mistral Document AI OCR API for extracting text and structured content from PDFs"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "mistralai>=1.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-cov>=4.0.0",
+]
+notebook = [
+    "jupyterlab>=4.0.0",
+    "ipykernel"
+]
+
+[tool.hatch.build.targets.wheel]
+packages = []
