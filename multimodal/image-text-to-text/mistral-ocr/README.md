@@ -53,7 +53,7 @@ signed_url = client.files.get_signed_url(file_id=uploaded_pdf.id)
 ocr_response = client.ocr.process(
     model="mistral-ocr-latest",
     document={"type": "document_url", "document_url": signed_url.url},
-    table_format="null",
+    table_format="markdown",
     extract_header=False,
     extract_footer=False,
     include_image_base64=True
