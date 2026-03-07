@@ -53,14 +53,36 @@ signed_url = client.files.get_signed_url(file_id=uploaded_pdf.id)
 ocr_response = client.ocr.process(
     model="mistral-ocr-latest",
     document={"type": "document_url", "document_url": signed_url.url},
-    table_format="html",
-    extract_header=True,
-    extract_footer=True,
+    table_format="null",
+    extract_header=False,
+    extract_footer=False,
     include_image_base64=True
 )
 
 # Clean up
 client.files.delete(file_id=uploaded_pdf.id)
+```
+
+The output (`ocr_response`) will be a JSON object containing the extracted text content, images bboxes, metadata and other information about the document structure:
+
+```json
+{
+  "pages": [ # The content of each page
+    {
+      "index": int, # The index of the corresponding page
+      "markdown": str, # The main output and raw markdown content
+      "images": list, # Image information when images are extracted
+      "tables": list, # Table information when using `table_format=html` or `table_format=markdown`
+      "hyperlinks": list, # Hyperlinks detected
+      "header": str|null, # Header content when using `extract_header=True`
+      "footer": str|null, # Footer content when using `extract_footer=True`
+      "dimensions": dict # The dimensions of the page
+    }
+  ],
+  "model": str, # The model used for the OCR
+  "document_annotation": dict|null, # Document annotation information when used, visit the Annotations documentation for more information
+  "usage_info": dict # Usage information
+}
 ```
 
 ## Resources
