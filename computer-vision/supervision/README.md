@@ -29,6 +29,7 @@ uv run jupyter lab
 | `people_walking_tracking.ipynb` | Detect people with RF-DETR, use tiled inference (`sv.InferenceSlicer`) to catch small people, and track them with ByteTrack from the `trackers` package. |
 | `vehicles_line_counting.ipynb` | Count vehicles crossing a line on a highway with `sv.LineZone`, split by direction and vehicle class. |
 | `market_square_zones.ipynb` | Count people inside polygon zones (fountain, square, street) with `sv.PolygonZone` and plot occupancy over time. |
+| `vehicles_heatmap.ipynb` | Accumulate vehicle positions into a heatmap with `sv.HeatMapAnnotator`, and discuss why it measures dwell time rather than traffic volume. |
 
 Sample videos are downloaded to `data/` and annotated videos are written to `output/` (both git-ignored).
 
