@@ -30,6 +30,7 @@ uv run jupyter lab
 | `vehicles_line_counting.ipynb` | Count vehicles crossing a line on a highway with `sv.LineZone`, split by direction and vehicle class. |
 | `market_square_zones.ipynb` | Count people inside polygon zones (fountain, square, street) with `sv.PolygonZone` and plot occupancy over time. |
 | `vehicles_heatmap.ipynb` | Accumulate vehicle positions into a heatmap with `sv.HeatMapAnnotator`, and discuss why it measures dwell time rather than traffic volume. |
+| `market_square_time_in_zone.ipynb` | Combine tracking and `sv.PolygonZone` to measure how long each person spends around the fountain. |
 
 Sample videos are downloaded to `data/` and annotated videos are written to `output/` (both git-ignored).
 
