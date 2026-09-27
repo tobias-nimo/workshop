@@ -27,6 +27,7 @@ uv run jupyter lab
 | Notebook | Description |
 | --- | --- |
 | `people_walking_tracking.ipynb` | Detect people with RF-DETR, use tiled inference (`sv.InferenceSlicer`) to catch small people, and track them with ByteTrack from the `trackers` package. |
+| `vehicles_line_counting.ipynb` | Count vehicles crossing a line on a highway with `sv.LineZone`, split by direction and vehicle class. |
 
 Sample videos are downloaded to `data/` and annotated videos are written to `output/` (both git-ignored).
 

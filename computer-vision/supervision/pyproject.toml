@@ -12,4 +12,5 @@ dependencies = [
     "rfdetr>=1.11.0",
     "opencv-python>=5.0.0.93",
     "trackers>=2.6.1",
+    "pandas>=3.0.6",
 ]
