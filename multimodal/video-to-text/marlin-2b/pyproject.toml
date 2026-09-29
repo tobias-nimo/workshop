@@ -1,0 +1,21 @@
+[project]
+name = "marlin-2b"
+version = "0.1.0"
+description = "Spike: run the Marlin-2B video VLM on Apple Silicon and measure caption/find latency on security-style clips."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "transformers>=5.7.0",
+    "torch>=2.11.0",
+    "torchcodec",
+    "qwen-vl-utils>=0.0.14",
+    "av",
+    "pillow",
+    "supervision[assets]>=0.26.0",
+    "opencv-python",
+    "jupyterlab>=4.0.0",
+    "ipykernel",
+    "ipywidgets",
+    "torchvision>=0.29.0",
+    "pandas>=3.0.6",
+]
