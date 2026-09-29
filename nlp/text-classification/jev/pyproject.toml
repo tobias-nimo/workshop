@@ -1,0 +1,13 @@
+[project]
+name = "jev"
+version = "0.1.0"
+description = "A quick tour of TypeSafe's Jev via OpenRouter: how it works, quality, speed and cost."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "python-dotenv",
+    "pandas",
+    "jupyterlab>=4.0.0",
+    "ipykernel",
+    "typesafe-sdk>=0.7.2",
+]
